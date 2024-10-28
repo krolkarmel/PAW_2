@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Kalkulator kredytowy</title>
+</h:head>
+<h:body>
+
+	
+
+<p:panel header="Kalkulator Kredytowy">
+
+			<p:messages id="msg" />
+
+	<h:form>
+	<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
+	
+					<p:outputLabel for="idx" value="Kwota kredytu:" />
+					<p:inputText id="idx" value="#{calcBB.x}" />
+  		
+  					<p:outputLabel for="idx" value="Okres kredytowania:" />
+					<p:inputText id="idy" value="#{calcBB.y}" />
+  		
+  					<p:outputLabel for="idx" value="Stopa oprocentowania:" />
+					<p:inputText id="idz" value="#{calcBB.z}" />
+  		
+		
+		<p:messages id="msg" />
+
+		<p:commandButton value="Dodaj" action="#{calcBB.calc()}" update="@form"/>
+		<br />
+		<p:commandButton value="Dodaj (AJAX)" action="#{calcBB.calc_AJAX()}" update="msg">
+			<f:ajax execute="@form" render="msg" />
+		</p:commandButton>
+		<br />
+		
+		
+		</h:panelGrid>
+		<h:commandLink value="Informacje" action="#{calcBB.info()}" />
+		
+		
+	</h:form>
+</p:panel>
+</h:body>
+</html>
