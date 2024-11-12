@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Kalkulator">
+
+			<p:messages id="msg" />
+
+	<h:form>
+	<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
+	
+					<p:outputLabel for="idx" value="Kwota kredytu:" />	
+					<p:inputText id="idx" value="#{calcBB.x}"
+    required="true" 
+    requiredMessage="Należy podać kwotę kredytu"
+    validatorMessage="Kwota musi być większa niż 5.000zł">
+    <f:validateLongRange minimum="5000" />
+</p:inputText>
+					
+  		
+  					<p:outputLabel for="idy" value="Okres kredytowania:" />
+					<p:inputText id="idy" value="#{calcBB.y}"
+    required="true" 
+    requiredMessage="Należy podać okres kredytowania"
+    validatorMessage="Okres kredytowania być większy niż 12 miesięcy">
+    <f:validateLongRange minimum="12" />
+</p:inputText>
+  		
+  					<p:outputLabel for="idz" value="Stopa oprocentowania:" />
+					<p:inputText id="idz" value="#{calcBB.z}"
+    required="true" 
+    requiredMessage="Należy podać stopę oprocentowania"
+    validatorMessage="Stopa oprocentowania musi być w przedziale od 0.1 do 50">
+    <f:validateDoubleRange minimum="0.1" maximum="50" />
+</p:inputText>
+  		
+
+		<p:commandButton value="Oblicz" action="#{calcBB.doTheMath()}" update="msg"/>
+		<br />
+		
+		
+		
+		</h:panelGrid>
+	<h:commandLink value="Informacje" action="#{calcBB.info()}" />
+		
+		
+	</h:form>
+</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>
